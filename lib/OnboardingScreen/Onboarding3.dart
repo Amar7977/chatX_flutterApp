@@ -1,23 +1,22 @@
-import 'package:chatx/OnboardingScreen/Onboarding3.dart';
+import 'package:chatx/Widgets/uihelper.dart';
+import 'package:chatx/login&signin/loginscreen.dart';
 import 'package:flutter/material.dart';
 
-class Onboarding2 extends StatelessWidget {
-  const Onboarding2({super.key});
 
+class Onboarding3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          // Top Illustration Section
+        body: Column(
+          children: [
           Expanded(
             flex: 6,
             child: Container(
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color(0xFFFCCFA4), // top gradient color
-                    Color(0xFFCCBDFE)  // bottom gradient color
+                    Color(0xFFFFCFA1), // top background color
+                    Color(0xFFEEDCF5) // bottom background color
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -25,15 +24,14 @@ class Onboarding2 extends StatelessWidget {
               ),
               child: Center(
                 child: Image.asset(
-                  "assets/images/imageonborading2.png", // <-- place your image here
+                  "assets/images/imageonborading3.png", // your asset path
                   fit: BoxFit.contain,
-                  height: 300,
                 ),
               ),
             ),
           ),
 
-          // Bottom Text + Button Section
+          // Text + Button Section
           Expanded(
             flex: 6,
             child: Container(
@@ -42,8 +40,8 @@ class Onboarding2 extends StatelessWidget {
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color(0xFFCCBDFE),
-                    Color(0xFFEEDCF5)
+                    Color(0xFFEEDCF5),
+                    Color(0xFFCCBDFE)
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -51,31 +49,25 @@ class Onboarding2 extends StatelessWidget {
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Start Talking,\nStay Connected.",
-                    style: TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      height: 1.3,
-                    ),
-                    textAlign: TextAlign.start,
+                  UiHelper.CustomText(
+                    text: "Your Privacy Matters",
+                    height: 30,
+                    fontweight: FontWeight.bold,
+                    color: Colors.black,
                   ),
                   const SizedBox(height: 8),
                   const Text(
-                    "Connect instantly with friends, family, or colleagues. "
-                        "Your conversations, your way.",
+                    "Every message is encrypted, so your chats stay personal and safe.",
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 16,
                       color: Colors.black,
                     ),
-                    textAlign: TextAlign.start,
+                    textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 190),
+                  const SizedBox(height: 170),
 
-                  // Next Button
+                  // sign up Button
                   SizedBox(
                     width: double.infinity,
                     height: 48,
@@ -90,15 +82,46 @@ class Onboarding2 extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Onboarding3()),
+                              builder: (context) => loginscreen()),
                         );
                       },
                       child: const Text(
-                        "Next",
+                        "Sign Up",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                           color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  // login Button
+                  SizedBox(
+                    width: double.infinity,
+                    height: 48,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => loginscreen()),
+                        );
+                      },
+                      child: const Text(
+                        "Log In",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -113,17 +136,8 @@ class Onboarding2 extends StatelessWidget {
                       Container(
                         width: 8,
                         height: 8,
-                        decoration: BoxDecoration(
-                          color: Color(0XFF3B4754),
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                      const SizedBox(width: 6),
-                      Container(
-                        width: 8,
-                        height: 8,
                         decoration: const BoxDecoration(
-                          color: Colors.white,
+                          color: Color(0XFF3B4754),
                           shape: BoxShape.circle,
                         ),
                       ),
@@ -133,6 +147,15 @@ class Onboarding2 extends StatelessWidget {
                         height: 8,
                         decoration: BoxDecoration(
                           color: Color(0XFF3B4754),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      const SizedBox(width: 6),
+                      Container(
+                        width: 8,
+                        height: 8,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
                           shape: BoxShape.circle,
                         ),
                       ),
@@ -143,7 +166,7 @@ class Onboarding2 extends StatelessWidget {
             ),
           ),
         ],
-      ),
+        ),
     );
   }
 }
