@@ -1,3 +1,4 @@
+import 'package:chatx/HomeInterface/homepage.dart';
 import 'package:chatx/Widgets/uihelper.dart';
 import 'package:chatx/login&signin/loginscreen.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +83,7 @@ class Onboarding3 extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => loginscreen()),
+                              builder: (context) => homepage()),
                         );
                       },
                       child: const Text(
