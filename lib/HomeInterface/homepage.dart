@@ -53,7 +53,7 @@ class _homepageState extends State<homepage> {
           BottomNavigationBarItem(
             icon: Image.asset(
               'assets/logo/contacticon.png',
-              height: 24,
+              height: 28,
               color: _selectedIndex == 1 ? Colors.black : Colors.grey,
             ),
             label: 'Contacts',
@@ -61,7 +61,7 @@ class _homepageState extends State<homepage> {
           BottomNavigationBarItem(
             icon: Image.asset(
               'assets/logo/profileicon.png',
-              height: 24,
+              height: 28,
               color: _selectedIndex == 2 ? Colors.black : Colors.grey,
             ),
             label: 'Profile',
