@@ -1,3 +1,4 @@
+import 'package:chatx/HomeInterface/homepage.dart';
 import 'package:chatx/login&signin/SigninScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:glass_kit/glass_kit.dart';
@@ -139,7 +140,13 @@ class _LoginScreenState extends State<loginscreen> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => homepage()),
+                            );
+                          },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0XFF1D61E7),
                           padding: const EdgeInsets.symmetric(vertical: 16),

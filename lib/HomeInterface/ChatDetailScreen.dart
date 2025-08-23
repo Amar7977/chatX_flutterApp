@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:chatx/Widgets/info.dart';
+import 'package:translator/translator.dart';
 
 class ChatMessage {
   final String text;
@@ -34,7 +35,9 @@ class ChatDetailScreen extends StatefulWidget {
 class _ChatDetailScreenState extends State<ChatDetailScreen> {
   late List<ChatMessage> messagesList;
   final TextEditingController _controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController(); // 👈 Added
   OverlayEntry? _overlayEntry;
+  final GoogleTranslator _translator = GoogleTranslator();
 
   @override
   void initState() {
@@ -49,18 +52,41 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
         originalText: msg["originalText"] as String?,
       );
     }).toList();
+
+    // 👇 Scroll to bottom when screen opens
+    WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
   }
 
-  void _sendMessage() {
+  void _scrollToBottom() {
+    if (_scrollController.hasClients) {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    }
+  }
+
+  void _sendMessage() async {
     if (_controller.text.trim().isEmpty) return;
+
+    final text = _controller.text.trim();
+    _controller.clear();
+
+    // Translate the message to Hindi
+    final translation = await _translator.translate(text, to: 'hi');
+
     setState(() {
       messagesList.add(ChatMessage(
-        text: _controller.text,
+        text: text,
         isMe: true,
         time: "Now",
+        originalText: translation.text,
       ));
-      _controller.clear();
     });
+
+    // 👇 Auto scroll to bottom after sending
+    Future.delayed(const Duration(milliseconds: 100), _scrollToBottom);
   }
 
   void _showReactions(GlobalKey key, int index) {
@@ -87,7 +113,8 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
             child: Material(
               color: Colors.transparent,
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                padding:
+                const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                 decoration: BoxDecoration(
                   color: Colors.black87,
                   borderRadius: const BorderRadius.only(
@@ -141,14 +168,16 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
     return Align(
       alignment: msg.isMe ? Alignment.centerRight : Alignment.centerLeft,
       child: Column(
-        crossAxisAlignment: msg.isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        crossAxisAlignment:
+        msg.isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           GestureDetector(
             key: bubbleKey,
             onLongPress: () => _showReactions(bubbleKey, index),
             child: Container(
               margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 12),
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
+              padding:
+              const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
               constraints: const BoxConstraints(maxWidth: 280),
               decoration: BoxDecoration(
                 gradient: msg.isMe
@@ -158,7 +187,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                   end: Alignment.bottomCenter,
                 )
                     : LinearGradient(
-                  colors: [Colors.grey.shade100, Colors.grey.shade500],
+                  colors: [Colors.grey, Colors.grey.shade300],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
@@ -182,7 +211,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                     ),
                   ],
                   if (msg.reaction != null && !msg.isMe) ...[
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       msg.reaction!,
                       style: const TextStyle(fontSize: 18),
@@ -193,7 +222,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(right: 8,left: 8),
+            margin: const EdgeInsets.only(right: 8, left: 8),
             child: Padding(
               padding: const EdgeInsets.only(right: 12, left: 12, top: 2),
               child: Text(
@@ -217,13 +246,19 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
         leading: Container(
           margin: const EdgeInsets.only(left: 10),
           child: CircleAvatar(
-            backgroundImage: NetworkImage('https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg'),
+            backgroundImage: NetworkImage(widget.profilePic),
           ),
         ),
-        title: Text(info[0]['name'].toString(), style: const TextStyle(fontSize: 20,color: Colors.black)),
+        title: Text(widget.name,
+            style: const TextStyle(fontSize: 20, color: Colors.black)),
         actions: [
           IconButton(
-            icon: Image.asset("assets/logo/cameraicon.png", width: 26, height: 26, color: Colors.black,),
+            icon: Image.asset(
+              "assets/logo/cameraicon.png",
+              width: 26,
+              height: 26,
+              color: Colors.black,
+            ),
             onPressed: () => print("mic tapped"),
           ),
           const SizedBox(width: 16),
@@ -233,6 +268,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
         children: [
           Expanded(
             child: ListView.builder(
+              controller: _scrollController, // 👈 attach controller
               padding: const EdgeInsets.only(top: 10),
               itemCount: messagesList.length,
               itemBuilder: (context, index) => _buildMessage(index),
@@ -252,7 +288,8 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
       child: Row(
         children: [
           const CircleAvatar(
-            backgroundImage: NetworkImage('https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg'),
+            backgroundImage: NetworkImage(
+                'https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg'),
             radius: 22,
           ),
           const SizedBox(width: 8),
@@ -275,11 +312,13 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     IconButton(
-                      icon: Image.asset("assets/logo/imageicon.png", width: 36, height: 36),
+                      icon: Image.asset("assets/logo/imageicon.png",
+                          width: 36, height: 36),
                       onPressed: () => print("image tapped"),
                     ),
                     IconButton(
-                      icon: Image.asset("assets/logo/micicon.png", width: 36, height: 36),
+                      icon: Image.asset("assets/logo/micicon.png",
+                          width: 36, height: 36),
                       onPressed: () => print("mic tapped"),
                     ),
                   ],
@@ -346,5 +385,3 @@ class _ExpandableOriginalTextState extends State<ExpandableOriginalText> {
     );
   }
 }
-
-
