@@ -85,12 +85,11 @@ class Onboarding extends StatelessWidget {
                               builder: (context) => Onboarding2()),
                         );
                       },
-                      child: const Text(
+                      child: Text(
                         "Get Started",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
-                          color: Colors.white,
                         ),
                       ),
                     ),

@@ -86,12 +86,11 @@ class Onboarding3 extends StatelessWidget {
                               builder: (context) => Signinscreen()),
                         );
                       },
-                      child: const Text(
+                      child: Text(
                         "Sign Up",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
-                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -105,7 +104,7 @@ class Onboarding3 extends StatelessWidget {
                     height: 48,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
+                        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(24),
                         ),
@@ -117,12 +116,12 @@ class Onboarding3 extends StatelessWidget {
                               builder: (context) => loginscreen()),
                         );
                       },
-                      child: const Text(
+                      child: Text(
                         "Log In",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
-                          color: Colors.black,
+                          color:  Theme.of(context).colorScheme.tertiary,
                         ),
                       ),
                     ),

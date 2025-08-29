@@ -1,4 +1,6 @@
 import 'package:chatx/OnboardingScreen/Onboarding.dart';
+import 'package:chatx/Theme/DarkTheme.dart';
+import 'package:chatx/Theme/Light_Theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,10 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
-      ),
+      theme: Light_Theme,
+      darkTheme: Dark_Theme,
       home: Onboarding()
     );
   }

@@ -13,7 +13,7 @@ class _chatscreenState extends State<chatscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -21,7 +21,7 @@ class _chatscreenState extends State<chatscreen> {
           margin: EdgeInsets.only(top: 10),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).scaffoldBackgroundColor,
 
               ),
 
@@ -29,16 +29,15 @@ class _chatscreenState extends State<chatscreen> {
                 children: [
                   Text(
                     "Message (${info.length.toString().padLeft(2, '0')})",
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
-                      color: Colors.black,
                     ),
                   ),
                 ],
               ),
             ),
-            Divider(height: 1, color: Colors.grey.shade300),
+            Divider(height: 1, color: Theme.of(context).colorScheme.secondary),
             // Chat list
             Expanded(
               child: ListView.builder(
@@ -58,7 +57,7 @@ class _chatscreenState extends State<chatscreen> {
                       );
                     },
                     child: Container(
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.primary,
                       child: Padding(
                         padding: const EdgeInsets.only(top: 10),
                         child: Column(
@@ -86,7 +85,7 @@ class _chatscreenState extends State<chatscreen> {
                                   color: Colors.green, size: 14)
                                   : null,
                             ),
-                            Divider(height: 1, color: Colors.grey.shade300),
+                            Divider(height: 1, color: Theme.of(context).colorScheme.secondary),
                           ],
                         ),
                       ),

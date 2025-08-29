@@ -93,12 +93,11 @@ class Onboarding2 extends StatelessWidget {
                               builder: (context) => Onboarding3()),
                         );
                       },
-                      child: const Text(
+                      child: Text(
                         "Next",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
-                          color: Colors.white,
                         ),
                       ),
                     ),

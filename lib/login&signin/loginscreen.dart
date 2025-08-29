@@ -29,8 +29,8 @@ class _LoginScreenState extends State<loginscreen> {
             borderRadius: BorderRadius.circular(24.0),
             gradient: LinearGradient(
               colors: [
-                Colors.white.withOpacity(0.70),
-                Colors.white.withOpacity(0.40),
+                Theme.of(context).colorScheme.background.withOpacity(0.65),
+                Theme.of(context).colorScheme.background.withOpacity(0.25),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -63,14 +63,14 @@ class _LoginScreenState extends State<loginscreen> {
                     const Text(
                       'Enter your email and password to log in',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 14, color: Colors.black54),
+                      style: TextStyle(fontSize: 14,),
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
                       decoration: InputDecoration(
                         hintText: 'Email',
                         filled: true,
-                        fillColor: Colors.white.withOpacity(0.85),
+                        fillColor: Colors.white.withOpacity(0.45),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: BorderSide(
@@ -91,7 +91,7 @@ class _LoginScreenState extends State<loginscreen> {
                       decoration: InputDecoration(
                         hintText: 'Password',
                         filled: true,
-                        fillColor: Colors.white.withOpacity(0.85),
+                        fillColor: Colors.white.withOpacity(0.45),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: BorderSide(color: Colors.transparent),
@@ -121,7 +121,7 @@ class _LoginScreenState extends State<loginscreen> {
                         Row(
                           children: [
                             Checkbox(value: false, onChanged: (_) {}),
-                            const Text("Remember me"),
+                            Text("Remember me"),
                           ],
                         ),
                         TextButton(
@@ -173,7 +173,7 @@ class _LoginScreenState extends State<loginscreen> {
                           height: 50,
                           width: 50,
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color : Theme.of(context).colorScheme.secondary,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Image.asset(
@@ -186,7 +186,7 @@ class _LoginScreenState extends State<loginscreen> {
                           height: 50,
                           width: 50,
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color : Theme.of(context).colorScheme.secondary,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Image.asset(
@@ -199,7 +199,7 @@ class _LoginScreenState extends State<loginscreen> {
                           height: 50,
                           width: 50,
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color : Theme.of(context).colorScheme.secondary,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Image.asset(
@@ -212,7 +212,7 @@ class _LoginScreenState extends State<loginscreen> {
                           height: 50,
                           width: 50,
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color : Theme.of(context).colorScheme.secondary,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Image.asset(

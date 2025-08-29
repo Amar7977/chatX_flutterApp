@@ -239,9 +239,9 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 1,
         leading: Container(
           margin: const EdgeInsets.only(left: 10),
@@ -250,14 +250,14 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
           ),
         ),
         title: Text(widget.name,
-            style: const TextStyle(fontSize: 20, color: Colors.black)),
+            style: const TextStyle(fontSize: 20,)),
         actions: [
           IconButton(
             icon: Image.asset(
               "assets/logo/cameraicon.png",
               width: 26,
               height: 26,
-              color: Colors.black,
+              color: Theme.of(context).colorScheme.tertiary,
             ),
             onPressed: () => print("mic tapped"),
           ),
@@ -282,14 +282,13 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
 
   Widget _buildBottomInput() {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      margin: const EdgeInsets.only(bottom: 6),
-      color: Colors.white,
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
+      margin: const EdgeInsets.only(bottom: 0),
+      color:Theme.of(context).colorScheme.background,
       child: Row(
         children: [
-          const CircleAvatar(
-            backgroundImage: NetworkImage(
-                'https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg'),
+           CircleAvatar(
+            backgroundImage:NetworkImage(widget.profilePic),
             radius: 22,
           ),
           const SizedBox(width: 8),
@@ -299,7 +298,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
               decoration: InputDecoration(
                 hintText: "Message",
                 filled: true,
-                fillColor: Colors.grey.shade100,
+                fillColor: Theme.of(context).colorScheme.secondary,
                 contentPadding: const EdgeInsets.symmetric(
                   horizontal: 12,
                   vertical: 15,
@@ -313,12 +312,13 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                   children: [
                     IconButton(
                       icon: Image.asset("assets/logo/imageicon.png",
-                          width: 36, height: 36),
+                          width: 36, height: 36,  color: Theme.of(context).colorScheme.tertiary),
                       onPressed: () => print("image tapped"),
+
                     ),
                     IconButton(
                       icon: Image.asset("assets/logo/micicon.png",
-                          width: 36, height: 36),
+                          width: 36, height: 36, color: Theme.of(context).colorScheme.tertiary,),
                       onPressed: () => print("mic tapped"),
                     ),
                   ],

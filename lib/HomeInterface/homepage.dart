@@ -29,7 +29,7 @@ class _homepageState extends State<homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
 
       body: _screens[_selectedIndex],
 
@@ -37,16 +37,16 @@ class _homepageState extends State<homepage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.black,
+        selectedItemColor:  Theme.of(context).colorScheme.tertiary,
         unselectedItemColor: Colors.grey,
         items: [
           BottomNavigationBarItem(
             icon: Image.asset(
               'assets/logo/chaticon.png',
               height: 24,
-              color: _selectedIndex == 0 ? Colors.black : Colors.grey,
+              color: _selectedIndex == 0 ? Theme.of(context).colorScheme.tertiary : Theme.of(context).colorScheme.secondary,
             ),
             label: 'Messages',
           ),
@@ -54,7 +54,7 @@ class _homepageState extends State<homepage> {
             icon: Image.asset(
               'assets/logo/contacticon.png',
               height: 28,
-              color: _selectedIndex == 1 ? Colors.black : Colors.grey,
+              color: _selectedIndex == 1 ? Theme.of(context).colorScheme.tertiary : Theme.of(context).colorScheme.secondary,
             ),
             label: 'Contacts',
           ),
@@ -62,7 +62,7 @@ class _homepageState extends State<homepage> {
             icon: Image.asset(
               'assets/logo/profileicon.png',
               height: 28,
-              color: _selectedIndex == 2 ? Colors.black : Colors.grey,
+              color: _selectedIndex == 2 ? Theme.of(context).colorScheme.tertiary : Theme.of(context).colorScheme.secondary,
             ),
             label: 'Profile',
           ),

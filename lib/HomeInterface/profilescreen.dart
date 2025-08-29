@@ -18,7 +18,7 @@ class _profilescreenState extends State<profilescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Column(
         children: [
           Stack(
@@ -76,7 +76,7 @@ class _profilescreenState extends State<profilescreen> {
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 2),
-                  color: Colors.white,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   child: Column(
                     children: [
                       ListTile(
@@ -84,7 +84,7 @@ class _profilescreenState extends State<profilescreen> {
                           height: 40,
                           width: 40,
                           decoration: BoxDecoration(
-                            color: Colors.grey.shade300,
+                            color: Theme.of(context).colorScheme.secondary,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: const Icon(Icons.email_outlined),
@@ -104,7 +104,7 @@ class _profilescreenState extends State<profilescreen> {
                           height: 40,
                           width: 40,
                           decoration: BoxDecoration(
-                            color: Colors.grey.shade300,
+                            color: Theme.of(context).colorScheme.secondary,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Icon(Icons.phone_outlined),
@@ -123,7 +123,7 @@ class _profilescreenState extends State<profilescreen> {
                           height: 40,
                           width: 40,
                           decoration: BoxDecoration(
-                            color: Colors.grey.shade300,
+                            color: Theme.of(context).colorScheme.secondary,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Icon(Icons.lock_outline),
@@ -147,7 +147,7 @@ class _profilescreenState extends State<profilescreen> {
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 2),
-                  color: Colors.white,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   child: Column(
                     children: [
                       SwitchListTile(
@@ -158,7 +158,7 @@ class _profilescreenState extends State<profilescreen> {
                           height: 40,
                           width: 40,
                           decoration: BoxDecoration(
-                            color: Colors.grey.shade300,
+                            color: Theme.of(context).colorScheme.secondary,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: const Icon(Icons.notifications_none),
@@ -170,7 +170,7 @@ class _profilescreenState extends State<profilescreen> {
                           height: 40,
                           width: 40,
                           decoration: BoxDecoration(
-                            color: Colors.grey.shade300,
+                            color: Theme.of(context).colorScheme.secondary,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Icon(Icons.privacy_tip_outlined),
@@ -187,7 +187,7 @@ class _profilescreenState extends State<profilescreen> {
                           height: 40,
                           width: 40,
                           decoration: BoxDecoration(
-                            color: Colors.grey.shade300,
+                            color: Theme.of(context).colorScheme.secondary,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Icon(Icons.brightness_6_outlined),
@@ -205,7 +205,7 @@ class _profilescreenState extends State<profilescreen> {
                           height: 40,
                           width: 40,
                           decoration: BoxDecoration(
-                            color: Colors.grey.shade300,
+                            color: Theme.of(context).colorScheme.secondary,
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Icon(Icons.help_outline),
